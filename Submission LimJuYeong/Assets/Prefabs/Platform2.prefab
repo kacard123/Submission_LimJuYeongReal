@@ -111,7 +111,6 @@ GameObject:
   - component: {fileID: 2370889312000056571}
   - component: {fileID: 2370889312000056572}
   - component: {fileID: 1194837000567891270}
-  - component: {fileID: 1337061675464273588}
   - component: {fileID: 7949983206257105}
   m_Layer: 0
   m_Name: Obstacle Left
@@ -230,18 +229,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.36, y: 2.36}
   m_EdgeRadius: 0
---- !u!114 &1337061675464273588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2370889312000056573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96b0e5a4830884e47bef0a5a8a8b4ab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &7949983206257105
 Rigidbody2D:
   serializedVersion: 4
