@@ -50,15 +50,37 @@ public class Fire : MonoBehaviour
 
     public float speed;
 
+    public float distance;
+    public LayerMask isLayer;
+
+
     private void Start()
     {
-        Invoke("", 2);
+        Invoke("DestroyBullet", 2);
 
     }
 
-    private void Update()
+    void Update()
     {
-        transform.Translate(transform.right * speed * Time.deltaTime);
+        //RaycastHit2D ray = Physics.Raycast(transform.position, transform.right, distance, isLayer);
+        //if(ray.collider != null)
+        {
+
+        }
+        
+        if(transform.rotation.y == 0)
+        {
+            transform.Translate(transform.right * speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(transform.right * -1 * speed * Time.deltaTime);
+        }
+        
     }
 
+    void DestroyBullet()
+    {
+        Destroy(gameObject);
+    }
 }

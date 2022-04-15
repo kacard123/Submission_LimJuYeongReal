@@ -25,15 +25,17 @@ public class PlayerController : MonoBehaviour
         // 사용할 애니메이터 컴포넌트
         private Animator animator;
 
+        public GameObject firePrefab; // 생성할 탄알의 원본 프리팹
 
-        void Start()
+    void Start()
         {
             // 전역변수의 초기화 진행
             // 게임 오브젝트로부터 사용할 컴포넌트들을 가져와 변수에 할당
             playerRigidbody = GetComponent<Rigidbody2D>();
             playerAudio = GetComponent<AudioSource>();
             animator = GetComponent<Animator>();
-        }
+
+    }
 
 
         void Update()
@@ -64,7 +66,9 @@ public class PlayerController : MonoBehaviour
                 // 오디오 소스 재생 
                 playerAudio.Play();
 
-            }
+            Fire();
+
+        }
             else if (Input.GetMouseButtonUp(0) && playerRigidbody.velocity.y > 0)
 
             {
@@ -73,13 +77,21 @@ public class PlayerController : MonoBehaviour
                 // 현재 속도를 절반으로 변경
                 playerRigidbody.velocity = playerRigidbody.velocity * 0.5f;
 
-            }
+           
+
+        }
             //애니메이터의 Grounded파라미터를 isGrounded 값으로 갱신
             animator.SetBool("Grounded", isGrounded);
 
         }
+    void Fire()
+    {
+        // bulletPrefab의 복제본을
+        // transform.position 위치와 transform.rotation 회전으로 생성
+        GameObject fire = Instantiate(firePrefab, transform.position, transform.rotation);
+    }
 
-        void Die()
+    void Die()
         {
             // 사망 처리
             // animator의 Die트리거 파라미터를 셋
