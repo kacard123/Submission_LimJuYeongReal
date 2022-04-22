@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public bool isGameover = false; // 게임오버 상태
     public Text scoreText; // 점수를 출력할 UI 텍스트
     public GameObject gameoverUI; // 게임오버시 활성화할 UI 오브젝트
-
+    public bool isPlay = false;
+    public float gameSpeed = 1;
 
     private int score = 0; // 게임 점수
 

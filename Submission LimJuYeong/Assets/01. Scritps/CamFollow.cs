@@ -4,114 +4,17 @@ using UnityEngine;
 
 public class CamFollow : MonoBehaviour
 {
-    public enum State
-    {
-        // 3?? ??? ?
-        Idle, Ready, Tracking
-    }
-
-    // ???? ??
-    private State state
-    {
-        set
-        {
-            switch (value)
-            {
-                case State.Idle:
-                    break;
-                case State.Ready:
-                    break;
-                case State.Tracking:
-                    break;
-            }
-        }
-    }
-
-    void Awake()
-    {
-        state = State.Idle;
-    }
-
-    private Transform target;
-    // ??? ??? ? ??? ?????? 
-
-    public float smoothTime = 0.2f;
-    // ??? ??? ? ?? ???? ? ??? ????? ???? ??? ???? ?? ??
-    // ???? ??? ?? ???? ? Vector3 ??? ?? ?? ? ???? ???? ??? ??? ??
-
-
-    private Vector3 lastMovingVelocity;
-    // ????? ??? ??? ??? ???? ?? ???? ?? ??? ???? ???? ?? ??? ????
-    // ?? ???? ?? 
-    private Vector3 targetPosition;
-    // ?? ?? ??? ????? ??? ???? ???? ??? ???? 
-
-    private Camera cam;
-    private float targetZoomSize = 5f;
-
-    private const float roundReadyZoomSize = 14.5f;
-    private const float readyShotZoomSize = 5f;
-    private const float trackingZoomSize = 10f;
-
-    private float lastZoomSpeed;
-
-    private State state
-    {
-        set
-        {
-            switch (value)
-            {
-                case State.Idle:
-                    targetZoomSize = roundReadyZoomSize; //??
-                    break;
-                case State.Ready:
-                    targetZoomSize = readyShotZoomSize; //??
-                    break;
-                case State.Tracking:
-                    targetZoomSize = trackingZoomSize; //??
-                    break;
-            }
-        }
-    }
-
-    void Awake()
-    {
-        cam = GetComponentInChildren<Camera>(); //??
-        state = State.Idle;
-    }
-
+    GameObject player;
+    // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.Find("Player").GetComponent<Transform>();
+        player = GameObject.Find("Player"); // game object player을 찾아서 객체에 지정
     }
 
-    //???? ?? ???? ??
-    private void Move()
+    // Update is called once per frame
+    void Update()
     {
-        targetPosition = target.transform.position;
-
-        Vector3 smoothPosition = Vector3.SmoothDamp(transform.position, targetPosition,
-                                            ref lastMovingVelocity, smoothTime);
-
-        transform.position = smoothPosition;
-
-        state = State.Tracking;
-    }
-
-    private void Zoom()
-    {
-        float smoothZoomSize = Mathf.SmoothDamp(cam.orthographicSize, targetZoomSize,
-                                            ref lastZoomSpeed, smoothTime);
-
-        cam.orthographicSize = smoothZoomSize;
-    }
-
-    private void FixedUpdate() // FixedUpdate? ??? ??? ??? ? ?? 
-    {
-        if (target != null)
-        {
-            Move();
-            Zoom();
-        }
+        Vector3 PlayerPos = player.transform.position; // 플레이어가 조종중인 게임 오브젝트의 위치를 계산
+        transform.position = new Vector3(transform.position.y, PlayerPos.x, transform.position.z); // 플레이어가 조종중인 오브젝트의 y 값만 카메라의 좌표에 넘김
     }
 }
