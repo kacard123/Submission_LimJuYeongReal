@@ -4,17 +4,39 @@ using UnityEngine;
 
 public class CamFollow : MonoBehaviour
 {
-    GameObject player;
-    // Start is called before the first frame update
+    public Transform target;
+    public float speed;
+
+    public Vector2 center;
+    public Vector2 size;
+    float height;
+    float width;
+
     void Start()
     {
-        player = GameObject.Find("Player"); // game object player을 찾아서 객체에 지정
+        height = Camera.main.orthographicSize;
+        width = height * Screen.width / Screen.height;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void LateUpdate()
     {
-        Vector3 PlayerPos = player.transform.position; // 플레이어가 조종중인 게임 오브젝트의 위치를 계산
-        transform.position = new Vector3(transform.position.y, PlayerPos.x, transform.position.z); // 플레이어가 조종중인 오브젝트의 y 값만 카메라의 좌표에 넘김
+        // transform.position = new Vector3(target.position.x, target.position.y, -10f);
+        transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime * speed);
+        // transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
+
+        float lx = size.x * 0.5f - width;
+        float clampX = Mathf.Clamp(transform.position.x, -lx + center.x, lx + center.x);
+
+        float ly = size.y * 0.5f - height;
+        float clampY = Mathf.Clamp(transform.position.y, -ly + center.y, ly + center.y);
+
+        transform.position = new Vector3(clampX, clampY, -10f);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(center,size);
     }
 }
