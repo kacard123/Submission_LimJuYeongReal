@@ -13,6 +13,9 @@ public class Platform : MonoBehaviour
     // 코인(아이템류) 오브젝트들을 담는 배열
     public GameObject[] carrots;
 
+
+    public GameObject[] hpbonus;
+
     // 새로운 유니티 이벤트 메서드를 확인
     private void OnEnable()
     {
@@ -64,6 +67,25 @@ public class Platform : MonoBehaviour
             // 조건연산자 : coins[i].SetActive(Random.Range(0,3)) == 0? true:false);
 
         }
+       
+        for (int i = 0; i < hpbonus.Length; i++)
+            {
+                // 현재 순번의 장애물을 1/3의 확률로 활성화
+                if (Random.Range(0, 3) == 0)
+                {
+                    hpbonus[i].SetActive(true);
+                }
+                else
+                {
+                    hpbonus[i].SetActive(false);
+                }
+
+                // 조건연산자 : hpbonus[i].SetActive(Random.Range(0,3)) == 0? true:false);
+
+
+            }
+
+        
 
     }
     // 플레이어 캐릭터가 자신을 밟았을 때 점수를 추가하는 처리
@@ -81,5 +103,31 @@ public class Platform : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
 
-}
+    {
+
+        if (other.gameObject.tag == "Bonus")
+
+        {
+
+            GameManager.instance.selectCountdown += 1f;
+
+            Destroy(gameObject);
+
+
+
+
+
+            //게임 매니저의 게임오버 처리 실행
+
+
+
+
+
+
+
+        }
+
+
+    }

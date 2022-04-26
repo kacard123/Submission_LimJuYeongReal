@@ -7,6 +7,7 @@ TagManager:
   - Dead
   - Spark
   - Carrot
+  - Bonus
   layers:
   - Default
   - TransparentFX
