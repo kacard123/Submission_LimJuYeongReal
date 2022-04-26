@@ -49,6 +49,7 @@ public class PlatformSpawner : MonoBehaviour
     private float lastSpawnTime;
 
 
+
     void Start()
     {
         // 변수를 초기화하고 사용할 발판을 미리 생성
