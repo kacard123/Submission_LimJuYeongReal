@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public int hpCount = 5; // 실제 사용자 생명력
     public Text hpText; // 사용자에게 보여질 생명력 UI
+    public int hp;
 
 
     // 게임 시작과 동시에 싱글턴을 구성
@@ -51,6 +52,8 @@ public class GameManager : MonoBehaviour
     {
         // 사용자에게 보여질 생명력을 실제 생명력으로 등록
         hpText.text = hpCount.ToString();
+
+        hp = hpCount;
     }
 
     // 게임오버 상태에서 게임을 재시작할 수 있게 하는 처리
@@ -137,9 +140,16 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
+    public void HpText()
+    {
+        hpText.text = "" + hp;
+
+    }
+
     public int Plus(int a, int b)
     {
         int c = a + b;
         return c;
     }
+
 }

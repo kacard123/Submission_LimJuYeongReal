@@ -114,9 +114,9 @@ public class PlayerController : MonoBehaviour
             //GameManager.instance.OnPlayerDead();
         }
 
-        
-        
-        private void OnCollisionEnter2D(Collision2D collision)
+   
+
+    private void OnCollisionEnter2D(Collision2D collision)
         {
             // 바닥에 닿자마자 감지하는 처리 구현
             // 어떤 콜라이더와 닿았으며, 충돌 표면이 위쪽을 보고 있는지
@@ -168,7 +168,14 @@ public class PlayerController : MonoBehaviour
                     GameManager.instance.AddScore(100);
                     collision.gameObject.SetActive(false);
                     break;
-                default:
+                case "Bonus":
+                    GameManager.instance.hp += 1;
+                    GameManager.instance.HpText();
+                    Destroy(collision.gameObject);
+                    //GameManager.instance.AddScore(1);
+                    //collision.gameObject.SetActive(false);
+                    break;
+                    default:
                     break;
 
 
