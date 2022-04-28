@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 // 발판으로서 필요한 동작을 담은 스크립p
@@ -46,11 +45,7 @@ public class Platform : MonoBehaviour
             }
 
             // 조건연산자 : obstacles[i].SetActive(Random.Range(0,3)) == 0? true:false);
-
-
         }
-
-
 
         for (int i = 0; i < carrots.Length; i++)
         {
@@ -81,11 +76,7 @@ public class Platform : MonoBehaviour
             }
 
             // 조건연산자 : hpbonus[i].SetActive(Random.Range(0,3)) == 0? true:false);
-
-
         }
-
-
 
     }
     // 플레이어 캐릭터가 자신을 밟았을 때 점수를 추가하는 처리

@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         
         //if (isGameover)
         //{
-           Debug.Log(isGameover);
+           //Debug.Log(isGameover);
         //    Invoke("OnPlayerDead", 3.0f);
         //}
         //게임오버 상태에서 마우스 왼쪽 버튼을 클릭한다면...
@@ -134,7 +134,9 @@ public class GameManager : MonoBehaviour
     public bool Crash()
     {
         // hpCount--;
-        //hpText.text = hpCount.ToString();
+        // hpText.text = hpCount.ToString();
+        Debug.Log("crash");
+
         hpText.text = "" + --hpCount;
         if (hpCount <= 0) return true;
         return false;

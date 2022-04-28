@@ -56,7 +56,7 @@ public class Fire : MonoBehaviour
 
     private void Start()
     {
-        Invoke("DestroyFire", 2);
+        Invoke("DestroyBullet", 2);
 
     }
 
@@ -64,9 +64,7 @@ public class Fire : MonoBehaviour
     {
         //RaycastHit2D ray = Physics.Raycast(transform.position, transform.right, distance, isLayer);
         //if(ray.collider != null)
-        {
-
-        }
+      
 
         if (transform.rotation.y == 0)
         {
@@ -98,6 +96,7 @@ public class Fire : MonoBehaviour
             {
                 // 상대방 RedMonsterController 컴포넌트의 Die() 메서드 실행
                 redMonsterController.Die();
+                DestroyBullet();
             }
         }
     }
