@@ -1,4 +1,5 @@
-
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 // 발판으로서 필요한 동작을 담은 스크립p
@@ -12,12 +13,19 @@ public class Platform : MonoBehaviour
     // 코인(아이템류) 오브젝트들을 담는 배열
     public GameObject[] carrots;
 
-
     public GameObject[] hpcount;
+
+    public GameObject[] eyes;
 
     // 새로운 유니티 이벤트 메서드를 확인
     private void OnEnable()
     {
+
+        //if(this != null)
+        //{
+        //    UnityEditor.EditorUtility.SetDirty(this);
+        //}
+
         // Awake()나 Start 같은 유니티 이벤트 메서드 입니다.
         // Start() 메서드처럼 컴포넌트가 활성화될 때 자동으로
         // 한 번 실행되는 메서드입니다. 그런데,
@@ -75,7 +83,25 @@ public class Platform : MonoBehaviour
                 hpcount[i].SetActive(false);
             }
 
-            // 조건연산자 : hpbonus[i].SetActive(Random.Range(0,3)) == 0? true:false);
+            // 조건연산자 : hpcount[i].SetActive(Random.Range(0,3)) == 0? true:false);
+        }
+
+
+
+        for (int i = 0; i < eyes.Length; i++)
+        {
+            // 현재 순번의 코인(아이템류)을 1/5의 확률로 활성화
+            if (Random.Range(0, 5) == 0)
+            {
+                eyes[i].SetActive(true);
+            }
+            else
+            {
+                eyes[i].SetActive(false);
+            }
+
+            // 조건연산자 : eyes[i].SetActive(Random.Range(0,3)) == 0? true:false);
+
         }
 
     }
@@ -92,6 +118,7 @@ public class Platform : MonoBehaviour
             stepped = true;
             GameManager.instance.AddScore(1);
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -108,7 +135,5 @@ public class Platform : MonoBehaviour
             //게임 매니저의 게임오버 처리 실행
 
         }
-
-
     }
 }

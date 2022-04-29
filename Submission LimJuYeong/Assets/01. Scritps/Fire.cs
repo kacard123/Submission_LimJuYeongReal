@@ -64,7 +64,7 @@ public class Fire : MonoBehaviour
     {
         //RaycastHit2D ray = Physics.Raycast(transform.position, transform.right, distance, isLayer);
         //if(ray.collider != null)
-      
+
 
         if (transform.rotation.y == 0)
         {
@@ -79,7 +79,7 @@ public class Fire : MonoBehaviour
 
     void DestroyBullet()
     {
-        Destroy(gameObject,3f);
+        Destroy(gameObject, 3f);
     }
 
     // 트리거 충돌 시 자동으로 실행되는 메서드

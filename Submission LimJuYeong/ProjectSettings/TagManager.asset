@@ -8,6 +8,7 @@ TagManager:
   - Spark
   - Carrot
   - Bonus
+  - ItemJump
   layers:
   - Default
   - TransparentFX

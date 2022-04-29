@@ -133,9 +133,9 @@ public class GameManager : MonoBehaviour
 
     public bool Crash()
     {
-        // hpCount--;
-        // hpText.text = hpCount.ToString();
-        Debug.Log("crash");
+        //hpCount--;
+        //hpText.text = hpCount.ToString();
+        // Debug.Log("crash");
 
         hpText.text = "" + --hpCount;
         if (hpCount <= 0) return true;
