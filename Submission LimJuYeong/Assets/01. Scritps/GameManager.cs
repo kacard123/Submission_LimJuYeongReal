@@ -23,10 +23,9 @@ public class GameManager : MonoBehaviour
     public int hpCount = 5; // 실제 사용자 생명력
     public Text hpText; // 사용자에게 보여질 생명력 UI
     public int hp;
-
-
-    // 게임 시작과 동시에 싱글턴을 구성
-    private void Awake()
+   
+        // 게임 시작과 동시에 싱글턴을 구성
+        private void Awake()
     {
         // 싱글턴 변수 instance가 비어 있나요?
         if (instance == null)
