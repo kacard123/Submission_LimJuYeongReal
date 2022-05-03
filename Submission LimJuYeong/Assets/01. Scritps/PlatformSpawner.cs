@@ -28,7 +28,7 @@ public class PlatformSpawner : MonoBehaviour
     public float timeBetSpawnMin = 1.25f;
     // 다음 배치까지의 시간 간격 최대값
     public float timeBetSpawnMax = 2.25f;
-    //다음 배치까지의 시간 간격 
+    // 다음 배치까지의 시간 간격 
     private float timeBetSpawn;
 
     // 배치할 위치의 최소 y값
@@ -82,6 +82,8 @@ public class PlatformSpawner : MonoBehaviour
 
         // 게임오버 상태에서는 동작하지 않는다.
         if (GameManager.instance.isGameover) return;
+
+       
 
         // 마지막 배치 시점에서 timeBetSpawn 이상 시간이 흘렀다면,
         if (Time.time >= lastSpawnTime + timeBetSpawn)

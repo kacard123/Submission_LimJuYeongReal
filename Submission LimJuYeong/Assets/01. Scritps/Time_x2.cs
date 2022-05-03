@@ -15,7 +15,8 @@ public class Time_x2 : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(onClick); // onclick 이라는 메서드를 버튼으로 불러온다.
+        GetComponent<Button>().onClick.AddListener(onClick);
+        // onclick 이라는 메서드를 버튼으로 불러온다.
     }
 
     private void onClick() // 클릭했을 때
@@ -32,39 +33,10 @@ public class Time_x2 : MonoBehaviour
             Time.timeScale = 1f; // 일반 속도
             GetComponent<Image>().sprite = x1; // x1 이미지를 가져온다
         }
-        isdouble = !isdouble;
+        isdouble = !isdouble; // isdouble = true;과 isdouble = false; 같은 기능
 
     }
 
-    //void Start()
-    //{
-    //    ct = GameObject.Find("TimeController").GetComponent<ControllerTime>();
-    //    spriteRenderer = GetComponent<SpriteRenderer>();
-    //}
-
-    //void OnMouseUp()
-    //{
-    //    if (ct.isPause == false)
-    //    {
-    //        // 2배속
-    //        ct.isFastSpeed = true;
-    //        Time.timeScale = 2f;
-    //        spriteRenderer.sprite = x2;
-    //    }
-    //    // 1배속
-    //    else
-    //    {
-    //        ct.isFastSpeed = false;
-    //        Time.timeScale = 1f;
-    //        spriteRenderer.sprite = x1;
-    //    }
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-    //}
-
+    
 
 }

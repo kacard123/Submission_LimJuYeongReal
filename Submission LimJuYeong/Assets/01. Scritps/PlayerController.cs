@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
             // 오디오 소스 재생 
             playerAudio.Play();
 
-            Fire();
+            Fire(); // 불꽃 공격
 
         }
         else if (Input.GetMouseButtonUp(0) && playerRigidbody.velocity.y > 0)
@@ -77,14 +77,9 @@ public class PlayerController : MonoBehaviour
             //(위로 상승 중)
             // 현재 속도를 절반으로 변경
             playerRigidbody.velocity = playerRigidbody.velocity * 0.5f;
-
-
-
         }
         //애니메이터의 Grounded파라미터를 isGrounded 값으로 갱신
         animator.SetBool("Grounded", isGrounded);
-
-       
 
 
         void Fire()
@@ -93,6 +88,9 @@ public class PlayerController : MonoBehaviour
             // transform.position 위치와 transform.rotation 회전으로 생성
             GameObject fire = Instantiate(firePrefab, transform.position, transform.rotation);
         }
+
+
+        
 
     }
 
@@ -146,36 +144,32 @@ public class PlayerController : MonoBehaviour
     {
         // 트리거 콜라이더를 가진 장애물과의 출동 감지
 
-        // 충돌한 상대방의 태그가 Dead이면서, 아직 사망하지 않았다면
-        //    if (collision.tag == "Dead" && !isDead)
-        //{
-        //    Die();
-        //}
-        //else if (collision.tag == "Spark" && !isDead)
-        //{
-        //    if (GameManager.instance.Crash() == true) Die();
-        //}
-
 
         if (isDead) return;
         switch (collision.tag)
         {
-            case "Dead":
+           // 플레이어 사망 구현
+            case "Dead": 
                 Die();
                 break;
+           // 몬스터에 닿으면 HP가 줄어든다
             case "Spark":
                 if (GameManager.instance.Crash() == true) Die();
                 break;
+           // 당근에 닿으면 점수가 100씩 늘어난다
             case "Carrot":
                 GameManager.instance.AddScore(100);
                 collision.gameObject.SetActive(false);
                 break;
+
+           
+            // 보너스 아이템과 플레이어가 충돌시 Hp가 1씩 늘어난다  
             case "Bonus":
                 GameManager.instance.hp += 1;
                 GameManager.instance.HpText();
                 collision.gameObject.SetActive(false);
                 // Destroy가 들어와서 GameObject가 활성화, 비활성화가
-                // 되지 못하게 방해했땅
+                // 되지 못하게 방해했다
                 //GameManager.instance.AddScore(1);
                 //collision.gameObject.SetActive(false);
                 break;

@@ -15,8 +15,6 @@ public class Platform : MonoBehaviour
 
     public GameObject[] hpcount;
 
-    public GameObject[] eyes;
-
     // 새로운 유니티 이벤트 메서드를 확인
     private void OnEnable()
     {
@@ -83,25 +81,6 @@ public class Platform : MonoBehaviour
                 hpcount[i].SetActive(false);
             }
 
-            // 조건연산자 : hpcount[i].SetActive(Random.Range(0,3)) == 0? true:false);
-        }
-
-
-
-        for (int i = 0; i < eyes.Length; i++)
-        {
-            // 현재 순번의 코인(아이템류)을 1/5의 확률로 활성화
-            if (Random.Range(0, 5) == 0)
-            {
-                eyes[i].SetActive(true);
-            }
-            else
-            {
-                eyes[i].SetActive(false);
-            }
-
-            // 조건연산자 : eyes[i].SetActive(Random.Range(0,3)) == 0? true:false);
-
         }
 
     }
@@ -120,20 +99,20 @@ public class Platform : MonoBehaviour
         }
 
     }
-
+    // 플레이어가 아이템과 충돌했을 때 처리
     private void OnTriggerEnter2D(Collider2D other)
 
     {
-
+        // 태그가 Bonus라면
         if (other.gameObject.tag == "Bonus")
 
         {
+            // 플레이어의 생명횟수인 Hp가 1씩 증가한다.
             stepped = true;
             GameManager.instance.hp += 1;
             GameManager.instance.HpText();
             Destroy(gameObject);
             //게임 매니저의 게임오버 처리 실행
-
         }
     }
 }

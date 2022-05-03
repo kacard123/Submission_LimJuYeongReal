@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public bool isGameover = false; // 게임오버 상태
     public Text scoreText; // 점수를 출력할 UI 텍스트
     public GameObject gameoverUI; // 게임오버시 활성화할 UI 오브젝트
+    public GameObject clearPanel; // 일정점수 도달시 활성화할 게임 클리어 UI 오브젝트
     public bool isPlay = false;
     public float gameSpeed = 1;
 
@@ -23,6 +24,21 @@ public class GameManager : MonoBehaviour
     public int hpCount = 5; // 실제 사용자 생명력
     public Text hpText; // 사용자에게 보여질 생명력 UI
     public int hp;
+
+    
+    
+        public void GameClear()
+    {
+        Debug.Log("Game Clear");
+    }
+
+
+    public void ClearPanelActive()
+    {
+        coverPanel.SetActive(false);
+        staCIText.text = GameMangerScript.instance.AddStage();
+        clearPanel.SetActive(true);
+    }
    
         // 게임 시작과 동시에 싱글턴을 구성
         private void Awake()
@@ -92,50 +108,53 @@ public class GameManager : MonoBehaviour
 
     }
 
+
     // 플레이어 캐릭터가 사망 시 게임오버를 실행하는 메서드
-    //public void OnPlayerDead()
-    //{
-    //    // 현재 상태를 게임오버 상태로 변경
-    //    isGameover = true;
-    //    // 게임오버 UI를 활성화
-    //    gameoverUI.SetActive(true);
-    //}
-    public IEnumerator OnPlayerDead()
+    public IEnumerator OnPlayerDead() 
     {
         yield return new WaitForSeconds(3f);
+        // 현재 상태를 게임오버 상태로 변경
         isGameover = true;
+        // 게임오버 UI를 활성화
         gameoverUI.SetActive(true);
     }
 
+    
+
     public void OnMenu()
     {
+        // 메뉴 활성화
         menuPanel.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void OffMenu()
     {
+        // 메뉴 비활성화
         menuPanel.SetActive(false);
         Time.timeScale = 1f;
     }
 
     public void Exit()
     {
+        // 게임 종료 기능 활성화
         Application.Quit();
     }
 
     public void Restart()
     {
+        // 게임 재시작
+        // 게임 플레이 화면 불러옴
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // 시간이 경과하는 크기 (슬로우 모션 효과에 사용)
+        // timeScale이 1.0인 경우, 실제 시간과 같은 속도로 경과
+        // timeScale이 0.5인 경우, 실제 시간과 비교해서 2배 느리게 경과
         Time.timeScale = 1f;
     }
 
+    // 생명횟수의 증가와 감소에 연결되는 스크립트
     public bool Crash()
     {
-        //hpCount--;
-        //hpText.text = hpCount.ToString();
-        // Debug.Log("crash");
-
         hpText.text = "" + --hpCount;
         if (hpCount <= 0) return true;
         return false;
@@ -144,13 +163,5 @@ public class GameManager : MonoBehaviour
     public void HpText()
     {
         hpText.text = "" + hp;
-
     }
-
-    public int Plus(int a, int b)
-    {
-        int c = a + b;
-        return c;
-    }
-
 }
