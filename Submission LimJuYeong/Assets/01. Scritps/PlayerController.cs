@@ -162,7 +162,6 @@ public class PlayerController : MonoBehaviour
                 collision.gameObject.SetActive(false);
                 break;
 
-           
             // 보너스 아이템과 플레이어가 충돌시 Hp가 1씩 늘어난다  
             case "Bonus":
                 GameManager.instance.hp += 1;
@@ -170,8 +169,7 @@ public class PlayerController : MonoBehaviour
                 collision.gameObject.SetActive(false);
                 // Destroy가 들어와서 GameObject가 활성화, 비활성화가
                 // 되지 못하게 방해했다
-                //GameManager.instance.AddScore(1);
-                //collision.gameObject.SetActive(false);
+               
                 break;
             default:
                 break;

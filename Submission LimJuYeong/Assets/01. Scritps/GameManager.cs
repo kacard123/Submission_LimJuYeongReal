@@ -13,11 +13,15 @@ public class GameManager : MonoBehaviour
     public bool isGameover = false; // 게임오버 상태
     public Text scoreText; // 점수를 출력할 UI 텍스트
     public GameObject gameoverUI; // 게임오버시 활성화할 UI 오브젝트
-    public GameObject clearPanel; // 일정점수 도달시 활성화할 게임 클리어 UI 오브젝트
+    public GameObject clearUI; // 일정점수 도달시 활성화할 게임 클리어 UI 오브젝트
     public bool isPlay = false;
-    public float gameSpeed = 1;
+    public float gameSpeed = 1; // 게임 속도
+    public GameObject ClearUI;
+
+    
 
     private int score = 0; // 게임 점수
+   
 
     public GameObject menuPanel; // 메뉴 패널 변수
 
@@ -33,13 +37,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void ClearPanelActive()
-    {
-        coverPanel.SetActive(false);
-        staCIText.text = GameMangerScript.instance.AddStage();
-        clearPanel.SetActive(true);
-    }
-   
+       
         // 게임 시작과 동시에 싱글턴을 구성
         private void Awake()
     {
@@ -69,6 +67,7 @@ public class GameManager : MonoBehaviour
         hpText.text = hpCount.ToString();
 
         hp = hpCount;
+        //scoreCountup = score;
     }
 
     // 게임오버 상태에서 게임을 재시작할 수 있게 하는 처리
@@ -92,7 +91,16 @@ public class GameManager : MonoBehaviour
             // 어떠한 변수라도 대응할 수 있도록.
         }
 
-        Invoke("OnPlayerDead", 3.0f);
+        Invoke("OnPlayerDead", 3.0f); // "OnPlayerDead"함수를 3초 후에 실행한다.
+
+        if(score >= 700f) // score가 700점 이상이면 게임 클리어 이미지가 나온다
+        {
+            // Count가 700 이상일 때 동작할 함수 삽입
+            Time.timeScale = 0;
+            // Time.timescale 프로퍼티는 시간이 어떤 속도로 흘러가는지를 의미
+            // 기본값은 1.0f다.
+            ClearUI.SetActive(true);
+        }
     }
 
     // 점수를 증가시키는 메서드
