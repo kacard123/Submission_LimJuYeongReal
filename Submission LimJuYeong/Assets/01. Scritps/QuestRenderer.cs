@@ -73,7 +73,7 @@ public class QuestRenderer : MonoBehaviour
         UpdateUI();
     }
 
-    // 버튼을 클릭하면 당므 페이지로 이동
+    // 버튼을 클릭하면 다음 페이지로 이동
     public void OnClickNextButton()
     {
         Debug.Log("click next button");
