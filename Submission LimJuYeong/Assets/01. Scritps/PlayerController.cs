@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 트리거 콜라이더를 가진 장애물과의 출동 감지
+        // 트리거 콜라이더를 가진 장애물과의 충돌 감지
 
 
         if (isDead) return;

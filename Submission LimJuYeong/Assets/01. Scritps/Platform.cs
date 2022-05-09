@@ -19,11 +19,6 @@ public class Platform : MonoBehaviour
     private void OnEnable()
     {
 
-        //if(this != null)
-        //{
-        //    UnityEditor.EditorUtility.SetDirty(this);
-        //}
-
         // Awake()나 Start 같은 유니티 이벤트 메서드 입니다.
         // Start() 메서드처럼 컴포넌트가 활성화될 때 자동으로
         // 한 번 실행되는 메서드입니다. 그런데,

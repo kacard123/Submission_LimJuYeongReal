@@ -13,12 +13,12 @@ public class GameManager : MonoBehaviour
     public bool isGameover = false; // 게임오버 상태
     public Text scoreText; // 점수를 출력할 UI 텍스트
     public GameObject gameoverUI; // 게임오버시 활성화할 UI 오브젝트
-    public GameObject clearUI; // 일정점수 도달시 활성화할 게임 클리어 UI 오브젝트
+     
     public bool isPlay = false;
     public float gameSpeed = 1; // 게임 속도
-    public GameObject ClearUI;
+    public GameObject ClearUI; // 일정점수 도달시 활성화할 게임 클리어 UI 오브젝트
 
-    
+
 
     private int score = 0; // 게임 점수
    
@@ -74,11 +74,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
-        //if (isGameover)
-        //{
-           //Debug.Log(isGameover);
-        //    Invoke("OnPlayerDead", 3.0f);
-        //}
+       
         //게임오버 상태에서 마우스 왼쪽 버튼을 클릭한다면...
         if (isGameover && Input.GetMouseButtonDown(0))
         {
